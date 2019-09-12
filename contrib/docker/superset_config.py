@@ -58,6 +58,7 @@ CELERY_CONFIG = CeleryConfig
 ENABLE_PROXY_FIX = True
 LOG_LEVEL = "DEBUG"
 MAPBOX_API_KEY = os.environ.get('MAPBOX_API_KEY')
+ENABLE_JAVASCRIPT_CONTROLS = True
 
 #Gitlab oauth2 configuration.
 #from flask_appbuilder.security.manager import AUTH_OAUTH
