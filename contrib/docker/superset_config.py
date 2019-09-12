@@ -57,7 +57,7 @@ class CeleryConfig(object):
 CELERY_CONFIG = CeleryConfig
 ENABLE_PROXY_FIX = True
 LOG_LEVEL = "DEBUG"
-MAPBOX_API_KEY = os.environ.get('MAPBOX_API_KEY')
+MAPBOX_API_KEY = get_env_variable('MAPBOX_API_KEY')
 ENABLE_JAVASCRIPT_CONTROLS = True
 
 #Gitlab oauth2 configuration.
@@ -69,7 +69,7 @@ ENABLE_JAVASCRIPT_CONTROLS = True
 #OAUTH_PROVIDERS = [{
 #        'name': 'Gitlab',
 #        'icon': 'fa-gitlab',
-#        'token_key': os.environ.get('GITLAB_TOKEN_KEY'),
+#        'token_key': get_env_variable('GITLAB_TOKEN_KEY'),
 #        'remote_app': {
 #                'base_url': 'https://gitlab.com/api/v4/user',
 #                'request_token_params': {
@@ -79,8 +79,8 @@ ENABLE_JAVASCRIPT_CONTROLS = True
 #                'authorize_url': 'https://gitlab.com/oauth/authorize',
 #                'request_token_method': 'GET',
 #                'access_token_method': 'POST',
-#                'consumer_key': os.environ.get('GITLAB_CONSUMER_KEY'),
-#                'consumer_secret': os.environ.get('GITLAB_CONSUMER_SECRET')
+#                'consumer_key': get_env_variable('GITLAB_CONSUMER_KEY'),
+#                'consumer_secret': get_env_variable('GITLAB_CONSUMER_SECRET')
 #        }
 #}]
 
