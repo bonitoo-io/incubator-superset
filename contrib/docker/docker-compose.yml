@@ -22,19 +22,19 @@ services:
     ports:
       - "127.0.0.1:6379:6379"
     volumes:
-      - redis:/data
+      - ./redis:/data
 
-  postgres:
-    image: postgres:10
-    restart: unless-stopped
-    environment:
-      POSTGRES_DB: superset
-      POSTGRES_PASSWORD: superset
-      POSTGRES_USER: superset
-    ports:
-      - "127.0.0.1:5432:5432"
-    volumes:
-      - postgres:/var/lib/postgresql/data
+  #  postgres:
+  #    image: postgres:10
+  #    restart: unless-stopped
+  #    environment:
+  #      POSTGRES_DB: superset
+  #      POSTGRES_PASSWORD: superset
+  #      POSTGRES_USER: superset
+  #    ports:
+  #      - "127.0.0.1:5432:5432"
+  #    volumes:
+  #      - postgres:/var/lib/postgresql/data
 
   superset:
     build:
@@ -44,28 +44,28 @@ services:
     environment:
       POSTGRES_DB: superset
       POSTGRES_USER: superset
-      POSTGRES_PASSWORD: superset
-      POSTGRES_HOST: postgres
+      POSTGRES_PASSWORD: superset1t
+      POSTGRES_HOST: 10.0.3.230
       POSTGRES_PORT: 5432
       REDIS_HOST: redis
       REDIS_PORT: 6379
       # If using production, comment development volume below
-      #SUPERSET_ENV: production
-      SUPERSET_ENV: development
+      SUPERSET_ENV: production
     user: root:root
     ports:
-      - 8088:8088
+      - 127.0.0.1:8188:8088
     depends_on:
-      - postgres
+      #      - postgres
       - redis
     volumes:
       # this is needed to communicate with the postgres and redis services
       - ./superset_config.py:/home/superset/superset/superset_config.py
+      - ./custom_sso_security_manager.py:/home/superset/superset/custom_sso_security_manager.py
       # this is needed for development, remove with SUPERSET_ENV=production
-      - ../../superset:/home/superset/superset
+#      - ../../superset:/home/superset/superset
 
 volumes:
-  postgres:
-    external: false
+  #  postgres:
+  #    external: false
   redis:
     external: false

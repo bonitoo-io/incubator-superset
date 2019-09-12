@@ -1,4 +1,4 @@
-# Licensed to the Apache Software Foundation (ASF) under one
+#Licensed to the Apache Software Foundation (ASF) under one
 # or more contributor license agreements.  See the NOTICE file
 # distributed with this work for additional information
 # regarding copyright ownership.  The ASF licenses this file
@@ -16,7 +16,6 @@
 # under the License.
 import os
 
-
 def get_env_variable(var_name, default=None):
     """Get the environment variable or raise exception."""
     try:
@@ -25,8 +24,8 @@ def get_env_variable(var_name, default=None):
         if default is not None:
             return default
         else:
-            error_msg = 'The environment variable {} was missing, abort...'\
-                        .format(var_name)
+            error_msg = 'The environment variable {} was missing, abort...' \
+                .format(var_name)
             raise EnvironmentError(error_msg)
 
 
@@ -56,3 +55,33 @@ class CeleryConfig(object):
 
 
 CELERY_CONFIG = CeleryConfig
+ENABLE_PROXY_FIX = True
+LOG_LEVEL = "DEBUG"
+MAPBOX_API_KEY = os.environ.get('MAPBOX_API_KEY')
+
+#Gitlab oauth2 configuration.
+#from flask_appbuilder.security.manager import AUTH_OAUTH
+
+#AUTH_TYPE = AUTH_OAUTH
+#AUTH_USER_REGISTRATION = True
+#AUTH_USER_REGISTRATION_ROLE = 'Public'
+#OAUTH_PROVIDERS = [{
+#        'name': 'Gitlab',
+#        'icon': 'fa-gitlab',
+#        'token_key': os.environ.get('GITLAB_TOKEN_KEY'),
+#        'remote_app': {
+#                'base_url': 'https://gitlab.com/api/v4/user',
+#                'request_token_params': {
+#                        'scope': 'openid read_user'
+#                },
+#                'access_token_url': 'https://gitlab.com/oauth/token',
+#                'authorize_url': 'https://gitlab.com/oauth/authorize',
+#                'request_token_method': 'GET',
+#                'access_token_method': 'POST',
+#                'consumer_key': os.environ.get('GITLAB_CONSUMER_KEY'),
+#                'consumer_secret': os.environ.get('GITLAB_CONSUMER_SECRET')
+#        }
+#}]
+
+#from custom_sso_security_manager import CustomSsoSecurityManager
+#CUSTOM_SECURITY_MANAGER = CustomSsoSecurityManager
