@@ -15,3 +15,4 @@
 # limitations under the License.
 #
 gevent==1.4.0
+Flask-OAuthlib==0.9.5

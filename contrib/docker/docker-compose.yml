@@ -44,7 +44,7 @@ services:
     environment:
       POSTGRES_DB: superset
       POSTGRES_USER: superset
-      POSTGRES_PASSWORD: superset1t
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWD}
       POSTGRES_HOST: 10.0.3.230
       POSTGRES_PORT: 5432
       REDIS_HOST: redis
