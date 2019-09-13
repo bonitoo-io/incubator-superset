@@ -62,28 +62,28 @@ MAPBOX_API_KEY = get_env_variable('MAPBOX_API_KEY')
 ENABLE_JAVASCRIPT_CONTROLS = True
 
 #Gitlab oauth2 configuration.
-from flask_appbuilder.security.manager import AUTH_OAUTH
-
-AUTH_TYPE = AUTH_OAUTH
-AUTH_USER_REGISTRATION = True
-AUTH_USER_REGISTRATION_ROLE = 'Public'
-OAUTH_PROVIDERS = [{
-       'name': 'Gitlab',
-       'icon': 'fa-gitlab',
-       'token_key': get_env_variable('GITLAB_TOKEN_KEY'),
-       'remote_app': {
-               'base_url': 'https://gitlab.com/api/v4/user',
-               'request_token_params': {
-                       'scope': 'openid read_user'
-               },
-               'access_token_url': 'https://gitlab.com/oauth/token',
-               'authorize_url': 'https://gitlab.com/oauth/authorize',
-               'request_token_method': 'GET',
-               'access_token_method': 'POST',
-               'consumer_key': get_env_variable('GITLAB_CONSUMER_KEY'),
-               'consumer_secret': get_env_variable('GITLAB_CONSUMER_SECRET')
-       }
-}]
-
-from custom_sso_security_manager import CustomSsoSecurityManager
-CUSTOM_SECURITY_MANAGER = CustomSsoSecurityManager
+# from flask_appbuilder.security.manager import AUTH_OAUTH
+# CSRF_ENABLED = True
+# AUTH_TYPE = AUTH_OAUTH
+# AUTH_USER_REGISTRATION = True
+# AUTH_USER_REGISTRATION_ROLE = 'Public'
+# OAUTH_PROVIDERS = [{
+#        'name': 'gitlab',
+#        'icon': 'fa-gitlab',
+#        'token_key': get_env_variable('GITLAB_TOKEN_KEY'),
+#        'remote_app': {
+#                'base_url': 'https://gitlab.com/api/v4/user',
+#                'request_token_params': {
+#                        'scope': 'openid read_user'
+#                },
+#                'access_token_url': 'https://gitlab.com/oauth/token',
+#                'authorize_url': 'https://gitlab.com/oauth/authorize',
+#                'request_token_method': 'GET',
+#                'access_token_method': 'POST',
+#                'consumer_key': get_env_variable('GITLAB_CONSUMER_KEY'),
+#                'consumer_secret': get_env_variable('GITLAB_CONSUMER_SECRET')
+#        }
+# }]
+#
+# from custom_sso_security_manager import CustomSsoSecurityManager
+# CUSTOM_SECURITY_MANAGER = CustomSsoSecurityManager
