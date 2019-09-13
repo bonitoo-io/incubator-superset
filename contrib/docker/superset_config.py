@@ -16,6 +16,7 @@
 # under the License.
 import os
 
+
 def get_env_variable(var_name, default=None):
     """Get the environment variable or raise exception."""
     try:
@@ -24,8 +25,8 @@ def get_env_variable(var_name, default=None):
         if default is not None:
             return default
         else:
-            error_msg = 'The environment variable {} was missing, abort...'\
-                        .format(var_name)
+            error_msg = 'The environment variable {} was missing, abort...' \
+                .format(var_name)
             raise EnvironmentError(error_msg)
 
 
