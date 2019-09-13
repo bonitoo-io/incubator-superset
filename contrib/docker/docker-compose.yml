@@ -41,6 +41,8 @@ services:
       context: ../../
       dockerfile: contrib/docker/Dockerfile
     restart: unless-stopped
+    env_file:
+      - secret.env
     environment:
       POSTGRES_DB: superset
       POSTGRES_USER: superset
