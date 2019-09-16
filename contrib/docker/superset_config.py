@@ -15,6 +15,8 @@
 # specific language governing permissions and limitations
 # under the License.
 import os
+from flask_appbuilder.security.manager import AUTH_OAUTH
+import json
 
 
 def get_env_variable(var_name, default=None):
@@ -61,12 +63,31 @@ LOG_LEVEL = "DEBUG"
 MAPBOX_API_KEY = get_env_variable('MAPBOX_API_KEY')
 ENABLE_JAVASCRIPT_CONTROLS = True
 
-#Gitlab oauth2 configuration.
-# from flask_appbuilder.security.manager import AUTH_OAUTH
-# CSRF_ENABLED = True
-# AUTH_TYPE = AUTH_OAUTH
-# AUTH_USER_REGISTRATION = True
-# AUTH_USER_REGISTRATION_ROLE = 'Public'
+#Google oauth2 configuration.
+
+CSRF_ENABLED = True
+AUTH_TYPE = AUTH_OAUTH
+AUTH_USER_REGISTRATION = False
+AUTH_USER_REGISTRATION_ROLE = 'Public'
+auth_credentials = json.load(open(get_env_variable('GOOGLE_OAUTH_CREDENTIALS')))['web']
+OAUTH_PROVIDERS = [{
+    'name': 'google',
+    'icon': 'fa-google',
+    'token_key': 'access_token',
+    'remote_app': {
+        'base_url': 'https://googleapis.com/oauth2/v2/',
+        'request_token_params': {
+           'scope': 'email profile'
+        },
+        'request_token_url': None,
+        'access_token_url': auth_credentials['token_uri'],
+        'authorize_url': auth_credentials['auth_uri'],
+        'consumer_key': auth_credentials['client_id'],
+        'consumer_secret': auth_credentials['client_secret']
+    }
+}]
+
+# Gitlab oauth2 configuration.
 # OAUTH_PROVIDERS = [{
 #        'name': 'gitlab',
 #        'icon': 'fa-gitlab',
