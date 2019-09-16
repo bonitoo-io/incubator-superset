@@ -15,4 +15,4 @@
 # limitations under the License.
 #
 gevent==1.4.0
-#flask-oAuthlib==0.9.5
+flask-oauthlib==0.9.5
