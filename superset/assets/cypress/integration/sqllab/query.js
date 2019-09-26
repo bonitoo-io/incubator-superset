@@ -26,7 +26,7 @@ export default () => {
       cy.server();
       cy.visit('/superset/sqllab');
 
-      cy.route('POST', '/superset/sql_json/**').as('sqlLabQuery');
+      cy.route('POST', '/superset/sql_json/').as('sqlLabQuery');
     });
 
     it('supports entering and running a query', () => {
@@ -58,7 +58,7 @@ export default () => {
         });
     });
 
-    it('successfully saves a query', () => {
+    it.skip('successfully saves a query', () => {
       cy.route('savedqueryviewapi/**').as('getSavedQuery');
       cy.route('superset/tables/**').as('getTables');
 
