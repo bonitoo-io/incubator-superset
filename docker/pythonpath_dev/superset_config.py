@@ -24,8 +24,12 @@
 
 import logging
 import os
+import json
 
 from cachelib.file import FileSystemCache
+from flask_appbuilder.security.manager import (
+    AUTH_OAUTH
+)
 
 logger = logging.getLogger()
 
@@ -69,6 +73,8 @@ REDIS_RESULTS_DB = get_env_variable("REDIS_CELERY_DB", 1)
 
 RESULTS_BACKEND = FileSystemCache("/app/superset_home/sqllab")
 
+# Your App secret key
+SECRET_KEY="\2\1thisismyscretkey\1\2\e\y\y\h"
 
 class CeleryConfig(object):
     BROKER_URL = f"redis://{REDIS_HOST}:{REDIS_PORT}/{REDIS_CELERY_DB}"
@@ -80,6 +86,44 @@ class CeleryConfig(object):
 
 CELERY_CONFIG = CeleryConfig
 SQLLAB_CTAS_NO_LIMIT = True
+ENABLE_PROXY_FIX = True
+LOG_LEVEL = "DEBUG"
+MAPBOX_API_KEY = get_env_variable('MAPBOX_API_KEY')
+ENABLE_JAVASCRIPT_CONTROLS = True
+PROXY_FIX_CONFIG = {
+    "x_for": 1,
+    "x_proto": 1,
+    "x_host": 1,
+    "x_port": 1,
+    "x_prefix": 1,
+}
+APP_ICON = "/static/assets/images/superset-logo-horiz.png"
+APP_ICON_WIDTH = 126
+
+#Google oauth2 configuration.
+
+CSRF_ENABLED = True
+AUTH_TYPE = AUTH_OAUTH
+AUTH_USER_REGISTRATION = False
+AUTH_USER_REGISTRATION_ROLE = 'Public'
+auth_credentials = json.load(open(get_env_variable('GOOGLE_OAUTH_CREDENTIALS')))['web']
+OAUTH_PROVIDERS = [{
+   'name': 'google',
+   'whitelist': ['@webshopfly.com','@bonitoo.io'],
+   'icon': 'fa-google',
+   'token_key': 'access_token',
+   'remote_app': {
+       'base_url': 'https://oauth2.googleapis.com/',
+       'request_token_params': {
+          'scope': 'email profile'
+       },
+       'request_token_url': None,
+       'access_token_url': auth_credentials['token_uri'],
+       'authorize_url': auth_credentials['auth_uri'],
+       'consumer_key': auth_credentials['client_id'],
+       'consumer_secret': auth_credentials['client_secret']
+   }
+}]
 
 #
 # Optionally import superset_config_docker.py (which will have been included on
