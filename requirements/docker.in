@@ -18,3 +18,4 @@
 gevent
 psycopg2-binary
 redis
+authlib
