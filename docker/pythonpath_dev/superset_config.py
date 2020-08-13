@@ -97,21 +97,36 @@ PROXY_FIX_CONFIG = {
     "x_port": 1,
     "x_prefix": 1,
 }
-APP_ICON = "/static/assets/images/superset-logo-horiz.png"
+APP_ICON = "/static/assets/images/superset-logo-flymeto.png"
 APP_ICON_WIDTH = 126
+FAVICONS = [{"href": "/static/assets/images/favicon-flymeto.png"}]
 
 #Google oauth2 configuration.
 
 CSRF_ENABLED = True
 AUTH_TYPE = AUTH_OAUTH
-AUTH_USER_REGISTRATION = False
-AUTH_USER_REGISTRATION_ROLE = 'Public'
+
+# Uncomment to setup Full admin role name
+AUTH_ROLE_ADMIN = 'Admin'
+
+# Uncomment to setup Public role name, no authentication needed
+AUTH_ROLE_PUBLIC = 'Public'
+
+# Will allow user self registration
+AUTH_USER_REGISTRATION = True
+
+# The default user self registration role for all users
+AUTH_USER_REGISTRATION_ROLE = "Public"
+
+# Self registration role based on user info
+#AUTH_USER_REGISTRATION_ROLE_JMESPATH = "contains(['alice@example.com', 'celine@example.com'], email) && 'Admin' || 'Public'"
+
 auth_credentials = json.load(open(get_env_variable('GOOGLE_OAUTH_CREDENTIALS')))['web']
 OAUTH_PROVIDERS = [{
    'name': 'google',
-   'whitelist': ['@webshopfly.com','@bonitoo.io'],
    'icon': 'fa-google',
    'token_key': 'access_token',
+   'whitelist': ['@webshopfly.com','@bonitoo.io'],
    'remote_app': {
        'client_id': auth_credentials['client_id'],
        'client_secret': auth_credentials['client_secret'],
