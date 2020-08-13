@@ -122,7 +122,6 @@ OAUTH_PROVIDERS = [{
        'request_token_url': None,
        'access_token_url': auth_credentials['token_uri'],
        'authorize_url': auth_credentials['auth_uri']
-       }
    }
 }]
 
