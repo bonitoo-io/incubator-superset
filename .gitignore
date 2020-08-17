@@ -53,6 +53,7 @@ superset.egg-info/
 superset/bin/supersetc
 tmp
 rat-results.txt
+wsf-backup/
 
 # Node.js, webpack artifacts
 *.entry.js
