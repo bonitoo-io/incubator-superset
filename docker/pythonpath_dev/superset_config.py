@@ -107,16 +107,16 @@ CSRF_ENABLED = True
 AUTH_TYPE = AUTH_OAUTH
 
 # Uncomment to setup Full admin role name
-AUTH_ROLE_ADMIN = 'Admin'
+#AUTH_ROLE_ADMIN = 'Admin'
 
 # Uncomment to setup Public role name, no authentication needed
-AUTH_ROLE_PUBLIC = 'Public'
+#AUTH_ROLE_PUBLIC = 'Public'
 
 # Will allow user self registration
 AUTH_USER_REGISTRATION = True
 
 # The default user self registration role for all users
-AUTH_USER_REGISTRATION_ROLE = "Public"
+AUTH_USER_REGISTRATION_ROLE = "Viewer"
 
 # Self registration role based on user info
 #AUTH_USER_REGISTRATION_ROLE_JMESPATH = "contains(['alice@example.com', 'celine@example.com'], email) && 'Admin' || 'Public'"
@@ -126,7 +126,7 @@ OAUTH_PROVIDERS = [{
    'name': 'google',
    'icon': 'fa-google',
    'token_key': 'access_token',
-   'whitelist': ['@webshopfly.com','@bonitoo.io'],
+   'whitelist': ['@webshopfly.com','@bonitoo.io','@essensworld.com'],
    'remote_app': {
        'client_id': auth_credentials['client_id'],
        'client_secret': auth_credentials['client_secret'],
